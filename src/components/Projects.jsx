@@ -70,7 +70,7 @@ const Projects = () => {
       <div className=" overflow-hidden ">
         <div
           ref={scrollContainerRef}
-          className="flex gap-8 overflow-x-auto scroll-smooth whitespace-nowrap overflow-y-hidden"
+          className="flex gap-8 overflow-x-auto "
         >
           {projectsData.map((project, index) => (
             <div
@@ -88,7 +88,7 @@ const Projects = () => {
                     {project.title}
                   </h2>
                   <p className="text-gray-500 text-sm">
-                    {project.price} <span>|</span> {project.location}
+                    {project.price} <span className="px-1">|</span> {project.location}
                   </p>
                 </div>
               </div>
