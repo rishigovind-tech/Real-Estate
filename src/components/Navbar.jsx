@@ -26,8 +26,10 @@ useEffect(()=>{
         <ul className=' hidden md:flex gap-7 text-white'>
           <a  href="#Header" className=' cursor-pointer hover:text-gray-400'>Home</a>
           <a  href="#About" className=' cursor-pointer hover:text-gray-400'>About</a>
+          <a  href="#Associates" className=' cursor-pointer hover:text-gray-400'>Associates</a>
           <a  href="#Projects" className=' cursor-pointer hover:text-gray-400'>Projects</a>
           <a  href="#Testimonials" className=' cursor-pointer hover:text-gray-400'>Testimonials</a>
+
         </ul>
         <button className=' hidden md:block  bg-blue-200 text-blue-800 px-8 py-2 rounded-full'>SignUp</button>
         <img onClick={()=>setShowMobile(true)} src={assets.menu_icon}  className='md:hidden w-7 cursor-pointer' alt="" />
@@ -40,6 +42,7 @@ useEffect(()=>{
         <ul className=' flex flex-col items-center justify-center gap-2 mt-5 px-5 text-lg font-medium'>
           <a onClick={()=>setShowMobile(false)} href="#Header" className='px-4 py-2 rounded-full inline-block'>Home</a>
           <a onClick={()=>setShowMobile(false)} href="#About" className='px-4 py-2 rounded-full inline-block'>About</a>
+          <a onClick={()=>setShowMobile(false)} href="#Associates" className=' cursor-pointer hover:text-gray-400'>Associates</a>
           <a onClick={()=>setShowMobile(false)} href="#Projects" className='px-4 py-2 rounded-full inline-block'>Project</a>
           <a onClick={()=>setShowMobile(false)} href="#Testimonials" className='px-4 py-2 rounded-full inline-block'>Testimonials</a>
           <button className='  bg-blue-200 text-black px-8 py-2 rounded-full inline-block'>SignUp</button>
