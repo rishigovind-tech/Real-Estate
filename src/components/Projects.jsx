@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { assets, projectsData } from "../assets/assets";
+import { Link } from "react-router-dom";
 
 const Projects = () => {
   const scrollContainerRef = useRef(null);
@@ -68,10 +69,7 @@ const Projects = () => {
       </div>
 
       <div className=" overflow-hidden ">
-        <div
-          ref={scrollContainerRef}
-          className="flex gap-8 overflow-x-auto "
-        >
+        <div ref={scrollContainerRef} className="flex gap-8 overflow-x-auto ">
           {projectsData.map((project, index) => (
             <div
               key={index}
@@ -88,7 +86,8 @@ const Projects = () => {
                     {project.title}
                   </h2>
                   <p className="text-gray-500 text-sm">
-                    {project.price} <span className="px-1">|</span> {project.location}
+                    {project.price} <span className="px-1">|</span>{" "}
+                    {project.location}
                   </p>
                 </div>
               </div>
@@ -97,7 +96,7 @@ const Projects = () => {
         </div>
         <div className="flex justify-end mr-2 py-3">
           <button className=" bg-blue-200 text-blue-800 px-8 py-3 rounded-full cursor-pointer ">
-          Unveil More
+            <Link to={"/allproject"}> Unveil More</Link>
           </button>
         </div>
       </div>

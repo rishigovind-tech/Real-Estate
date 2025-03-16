@@ -1,18 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import bg from "../assets/pagebg.png";
 import { Search } from "lucide-react";
 import { projectsData } from "../assets/data";
+import { Link } from "react-router-dom";
 
 const Searchbar = ({ searchTerm, setSearchTerm }) => {
   const [search, setSearch] = useState("");
 
   const handleSubmit = (event) => {
-    event.preventDefault(); 
+    event.preventDefault();
   };
 
-
-    
-  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   console.log(search);
 
@@ -45,10 +46,13 @@ const Searchbar = ({ searchTerm, setSearchTerm }) => {
                 placeholder="Search Name/Place"
                 aria-label="Search Name or Place"
                 required
-                onChange={(e) =>[ setSearch(e.target.value),setSearchTerm(e.target.value)]} 
+                onChange={(e) => [
+                  setSearch(e.target.value),
+                  setSearchTerm(e.target.value),
+                ]}
               />
 
-              {/* Search Button */}
+              
               <button
                 type="submit"
                 className="absolute right-2.5 bottom-2.5 bg-blue-200 text-blue-800  focus:ring-4 focus:outline-none  font-medium rounded-xl text-sm px-4 py-2 "
@@ -69,27 +73,36 @@ const Searchbar = ({ searchTerm, setSearchTerm }) => {
         </h1>
         <br />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
-          {projectsData.filter((item)=>{
-            return search.toLowerCase()===''? item :item.title.toLowerCase().startsWith(search.toLowerCase()) || item.location.toLowerCase().startsWith(search.toLowerCase())
-          }).map((allproject) => (
-            <div key={allproject.id} className="relative w-full ">
-              <img
-                src={allproject.image}
-                className="w-full h-[550px] mb-14 rounded-lg shadow-lg"
-              />
-              <div className=" absolute left-0 right-0 bottom-5 flex justify-center">
-                <div className=" inline-block bg-white w-3/4 px-4  py-2 shadow-md">
-                  <h2 className="text-xl font-semibold text-gray-800">
-                    {allproject.title}
-                  </h2>
-                  <p className="text-gray-500 text-sm">
-                    {allproject.price} <span className="px-1">|</span>{" "}
-                    {allproject.location}
-                  </p>
+          {projectsData
+            .filter((item) => {
+              return search.toLowerCase() === ""
+                ? item
+                : item.title.toLowerCase().startsWith(search.toLowerCase()) ||
+                    item.location
+                      .toLowerCase()
+                      .startsWith(search.toLowerCase());
+            })
+            .map((allproject) => (
+              <div key={allproject.id} className="relative w-full ">
+                <Link to={`/allproject/${allproject.id}`}>
+                <img
+                  src={allproject.image}
+                  className="w-full h-[550px] mb-14 rounded-lg shadow-lg"
+                />
+                <div className=" absolute left-0 right-0 bottom-5 flex justify-center">
+                  <div className=" inline-block bg-white w-3/4 px-4  py-2 shadow-md">
+                    <h2 className="text-xl font-semibold text-gray-800">
+                      {allproject.title}
+                    </h2>
+                    <p className="text-gray-500 text-sm">
+                      {allproject.price} <span className="px-1">|</span>{" "}
+                      {allproject.location}
+                    </p>
+                  </div>
                 </div>
+                </Link>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
     </div>

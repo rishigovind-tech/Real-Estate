@@ -1,29 +1,21 @@
-import React from 'react'
-
-import Header from './components/Header'
-import About from './components/About'
-import Marquee from './components/Marquee'
-import Projects from './components/Projects'
-import Testimonails from './components/Testimonails'
-import Contact from './components/Contact'
-import Footer from './components/Footer'
-import Searchbar from './pages/Searchbar'
-
+import React from "react";
+import {  Routes, Route } from "react-router-dom";
+import Searchbar from "./pages/Searchbar";
+import Landing from "./components/Landing";
+import Property from "./pages/Property";
 
 const App = () => {
   return (
-    <div className=' w-full overflow-hidden'>
-     {/* <Header/>
-     <About/>
-     <Marquee/>
-     <Projects/>
-     <Testimonails/>
-     <Contact/>
-     <Footer/> */}
-     <Searchbar/>
-     
+    <div className=" w-full overflow-hidden">
+      
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/allproject" element={<Searchbar />}/>
+          <Route path="/allproject/:id" element={<Property/>} />
+        </Routes>
+      
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

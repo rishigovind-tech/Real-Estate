@@ -52,6 +52,7 @@ const Contact = () => {
         <button type="submit" className=" bg-blue-200 text-blue-800 px-8 py-3 rounded-full cursor-pointer ">
         Connect with Us
         </button></div>
+        
       </form>
     </div>
   );
