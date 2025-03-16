@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import bg from "../assets/pagebg.png";
-import { Search } from "lucide-react";
+import { Heart, Search } from "lucide-react";
 import { projectsData } from "../assets/data";
 import { Link } from "react-router-dom";
 
@@ -10,6 +10,28 @@ const Searchbar = ({ searchTerm, setSearchTerm }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
   };
+
+  const [placeholder, setPlaceholder] = useState("Search Name/Place");
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        
+        setPlaceholder("Name / Place");
+      } else {
+        setPlaceholder("Search Name/Place");
+      }
+    };
+
+    
+    handleResize();
+
+    
+    window.addEventListener("resize", handleResize);
+
+    
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -30,11 +52,14 @@ const Searchbar = ({ searchTerm, setSearchTerm }) => {
 
         <div className=" mx-4 sm:mx-10 md:mx-[20%] mt-8 rounded-xl flex justify-center py-8 md:py-16 bg-gray-100 shadow-2xl relative top-[-120px] z-10 ">
           {/* <img className=" absolute top-0 left-0 w-full h-full object-cover rounded-xl" src={bgs} alt="" /> */}
-          <form className="w-full max-w-4xl px-4 " onSubmit={handleSubmit}>
+          <form
+            className="w-full max-w-4xl px-4 flex items-center gap-4"
+            onSubmit={handleSubmit}
+          >
             <label className="mb-2 text-sm font-medium text-gray-900 sr-only">
               Search
             </label>
-            <div className="relative  ">
+            <div className="relative flex-1">
               <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-black">
                 <Search size={20} />
               </div>
@@ -42,8 +67,8 @@ const Searchbar = ({ searchTerm, setSearchTerm }) => {
               <input
                 type="search"
                 id="search"
-                className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white "
-                placeholder="Search Name/Place"
+                className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white placeholder:text-xs sm:placeholder:text-base placeholder:truncate"
+                placeholder={placeholder}
                 aria-label="Search Name or Place"
                 required
                 onChange={(e) => [
@@ -52,14 +77,18 @@ const Searchbar = ({ searchTerm, setSearchTerm }) => {
                 ]}
               />
 
-              
               <button
                 type="submit"
-                className="absolute right-2.5 bottom-2.5 bg-blue-200 text-blue-800  focus:ring-4 focus:outline-none  font-medium rounded-xl text-sm px-4 py-2 "
+                className="absolute right-2.5 bottom-2.5 bg-blue-200 text-blue-800 focus:ring-4 focus:outline-none font-medium rounded-xl text-sm px-4 py-2"
               >
                 Search
               </button>
             </div>
+            <Link to={"/allproject/wishlist"}>
+            <div className="cursor-pointer bg-blue-200 text-blue-800 px-5 py-2 flex gap-2 items-center rounded-xl">
+              <Heart size={24} className="text-blue-800" />
+              <p className="hidden sm:block">Wishlist</p>
+            </div></Link>
           </form>
         </div>
       </div>
@@ -85,21 +114,21 @@ const Searchbar = ({ searchTerm, setSearchTerm }) => {
             .map((allproject) => (
               <div key={allproject.id} className="relative w-full ">
                 <Link to={`/allproject/${allproject.id}`}>
-                <img
-                  src={allproject.image}
-                  className="w-full h-[550px] mb-14 rounded-lg shadow-lg"
-                />
-                <div className=" absolute left-0 right-0 bottom-5 flex justify-center">
-                  <div className=" inline-block bg-white w-3/4 px-4  py-2 shadow-md">
-                    <h2 className="text-xl font-semibold text-gray-800">
-                      {allproject.title}
-                    </h2>
-                    <p className="text-gray-500 text-sm">
-                      {allproject.price} <span className="px-1">|</span>{" "}
-                      {allproject.location}
-                    </p>
+                  <img
+                    src={allproject.image}
+                    className="w-full h-[550px] mb-14 rounded-lg shadow-lg"
+                  />
+                  <div className=" absolute left-0 right-0 bottom-5 flex justify-center">
+                    <div className=" inline-block bg-white w-3/4 px-4  py-2 shadow-md">
+                      <h2 className="text-xl font-semibold text-gray-800">
+                        {allproject.title}
+                      </h2>
+                      <p className="text-gray-500 text-sm">
+                        {allproject.price} <span className="px-1">|</span>{" "}
+                        {allproject.location}
+                      </p>
+                    </div>
                   </div>
-                </div>
                 </Link>
               </div>
             ))}
