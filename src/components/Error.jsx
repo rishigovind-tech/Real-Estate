@@ -1,5 +1,5 @@
 import React from "react";
-import error from "../assets/error.svg"
+import errorImage from "../assets/error.svg"
 
 const Error = () => {
   return (
@@ -25,7 +25,7 @@ const Error = () => {
           <div className="relative w-full mt-12 lg:w-1/2 lg:mt-0">
             <img
               className="w-full max-w-lg lg:mx-auto"
-              src={error}
+              src={errorImage}
               alt=""
             />
           </div>
