@@ -75,6 +75,7 @@ const Projects = () => {
               key={index}
               className=" relative flex-shrink-0 w-full sm:w-1/4"
             >
+              <Link to={`/allproject/${project.id}`}>
               <img
                 src={project.image}
                 alt=""
@@ -91,6 +92,7 @@ const Projects = () => {
                   </p>
                 </div>
               </div>
+              </Link>
             </div>
           ))}
         </div>

@@ -237,16 +237,15 @@
 
 // export default Property;
 
-
-
-// 
+//
 
 // -----------------------------------------------------------------
 
-
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { projectsData } from "../assets/data";
 import { useParams } from "react-router-dom";
+import { WishlistContext } from "../components/WishlistContext";
+import { toast } from "react-toastify";
 import {
   DollarSign,
   Circle,
@@ -265,12 +264,31 @@ import {
 
 const Property = () => {
   const { id } = useParams();
+  const { wishlist, addToWishlist } = useContext(WishlistContext);
   const project = projectsData.find((img) => img.id === parseInt(id));
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isWishlisted, setIsWishlisted] = useState(false);
+
+  const toggleWishlist = () => {
+    if (isWishlisted) {
+      removeFromWishlist(project.id);
+      toast.info("Removed from Wishlist!", { position: "top-right", autoClose: 2000 });
+    } else {
+      addToWishlist(project);
+      toast.success("Added to Wishlist!", { position: "top-right", autoClose: 2000 });
+    }
+  };
+  
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+    setIsWishlisted(wishlist.some((item) => item.id === project.id));
+  }, [wishlist, project.id]);
+
+  const handleWishlistClick = () => {
+    addToWishlist(project);
+    setIsWishlisted(true);
+  };
 
   return (
     <div className="container mx-auto px-4 sm:px-6 md:px-20 lg:px-32 my-10 w-full overflow-hidden relative">
@@ -481,11 +499,17 @@ const Property = () => {
 
           <div className="px-6 py-2">
             <button
+              onClick={handleWishlistClick}
               type="submit"
               className="bg-blue-200 text-blue-800 px-4 sm:px-8 py-2 sm:py-3 rounded-full w-full mt-2 cursor-pointer flex items-center justify-center gap-2 text-xs sm:text-sm"
             >
-              <Heart size={25} className="text-black" />
-              <span>Save to Wishlist</span>
+              <Heart
+                size={25}
+                className={isWishlisted ? "text-red-500" : "text-black"}
+              />
+              <span>
+                {isWishlisted ? "Added to Wishlist" : "Save to Wishlist"}
+              </span>
             </button>
           </div>
         </div>

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { WishlistContext } from "../components/WishlistContext";
 import bg from "../assets/pagebg.png";
 import { Heart, Search } from "lucide-react";
 import { projectsData } from "../assets/data";
@@ -6,6 +7,7 @@ import { Link } from "react-router-dom";
 
 const Searchbar = ({ searchTerm, setSearchTerm }) => {
   const [search, setSearch] = useState("");
+  const { wishlist } = useContext(WishlistContext);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -16,20 +18,16 @@ const Searchbar = ({ searchTerm, setSearchTerm }) => {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 640) {
-        
         setPlaceholder("Name / Place");
       } else {
         setPlaceholder("Search Name/Place");
       }
     };
 
-    
     handleResize();
 
-    
     window.addEventListener("resize", handleResize);
 
-    
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
@@ -85,10 +83,17 @@ const Searchbar = ({ searchTerm, setSearchTerm }) => {
               </button>
             </div>
             <Link to={"/allproject/wishlist"}>
-            <div className="cursor-pointer bg-blue-200 text-blue-800 px-5 py-2 flex gap-2 items-center rounded-xl">
-              <Heart size={24} className="text-blue-800" />
-              <p className="hidden sm:block">Wishlist</p>
-            </div></Link>
+              <div className="relative cursor-pointer bg-blue-200 text-blue-800 px-5 py-2 flex gap-2 items-center rounded-xl">
+                <Heart size={24} className="text-blue-800" />
+                <p className="hidden sm:block">Wishlist</p>
+
+                {wishlist.length > 0 && (
+                  <span className="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full">
+                    {wishlist.length}
+                  </span>
+                )}
+              </div>
+            </Link>
           </form>
         </div>
       </div>
