@@ -22,4 +22,6 @@ This project is ideal for real estate businesses, property agents, or individual
 
 ## 📸 Webview
 
+![Screenshot](src/assets/screenshot.png)
+
   
