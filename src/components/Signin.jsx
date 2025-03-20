@@ -45,7 +45,7 @@ const Signin = () => {
             <input
               id="LoggingEmailAddress"
               className="block w-full px-4 py-2 border rounded-lg bg-gray-800 text-gray-300 border-gray-600 focus:ring-opacity-40 focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300"
-              type="email"
+              type="email" 
             />
           </div>
 

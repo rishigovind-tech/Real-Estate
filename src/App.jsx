@@ -8,10 +8,12 @@ import Wishlist from "./pages/Wishlist";
 import Signin from "./components/Signin";
 import Signup from "./components/Signup";
 import { WishlistProvider } from "./components/WishlistContext";
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
   return (
     <div className=" w-full overflow-hidden">
+      <ToastContainer/>
       <WishlistProvider>
         <Routes>
           <Route path="/" element={<Landing />} />
