@@ -7,11 +7,11 @@ const Signin = () => {
   return (
     <div
       className="w-full min-h-screen flex items-center justify-center"
-      style={{
-        backgroundImage: `url(${bg1})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
+      // style={{
+      //   // backgroundImage: `url(${bg1})`,
+      //   backgroundSize: "cover",
+      //   backgroundPosition: "center",
+      // }}
     >
       <div className="flex w-full max-w-sm mx-auto min-h-[500px] rounded-xl shadow-2xl bg-[#292D2F] bg-opacity-50 backdrop-blur-lg lg:max-w-4xl justify-center">
         <div className="w-full px-6 py-8 md:px-8 lg:w-1/2">
